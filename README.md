@@ -15,4 +15,4 @@ Autosplitter for Steam version (1.02), no idea if it'll work for any other versi
 
 ● Also you need splits with every level (except The Graveyard Shift since it doesn't split at the end)
 
-● Also whenever you restart a level it will auto split (don't know how to fix it, i'm not a programmer) so you're going to need the undo split button
+● Also whenever you restart a level it will auto split (i don't know how to fix it) so you're going to need the undo split button
