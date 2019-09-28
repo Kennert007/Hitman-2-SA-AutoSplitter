@@ -1,9 +1,11 @@
 # Hitman-2-SA-AutoSplitter
 
-Autosplitter for Steam version (1.02), no idea if it'll work for any other version.
+Autosplitter for Steam version (1.02), doesn't seem to work for 1.0 and 1.01.
 
 
 # Setting up the autosplitter in Livesplit
+
+● Download the ASL file
 
 ● Open Livesplit
 
@@ -13,6 +15,12 @@ Autosplitter for Steam version (1.02), no idea if it'll work for any other versi
 
 ● Double click on Scriptable Auto Splitter and add the downloaded ASL file there
 
-● Also you need splits with every level (except The Graveyard Shift since it doesn't split at the end)
 
-● Also whenever you restart a level it will auto split (i don't know how to fix it) so you're going to need the undo split button
+# Settings
+
+● Under Scriptable Auto Splitter you can also select exactly which maps you would like it to auto split (by default every level is checked)
+
+
+# Other
+
+If anyone needs to get in contact with me then: Kennert007#4167 (discord), Kennert007 (steam and twitter)
