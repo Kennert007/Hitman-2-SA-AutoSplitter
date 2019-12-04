@@ -1,55 +1,75 @@
-state("hitman2", "v1.02")
+state("hitman2", "V1.02")
 {
-	int IsAllLevels : 0x0052144, 0x380, 0x8, 0x314;
-	int IsUsedForEndCutscene : 0x003E9C0, 0x344;
-	int IsLoadScreen : 0x02AE234, 0xD8;
+	byte StartandLoadScrns : 0x02A907C, 0x8;
+	short AllLevels : 0x0141528, 0x0;
+	int EndCutscene : "RenderD3D.dll", 0x000F884, 0x1DC;
+}
+
+state("hitman2", "V1.0")
+{
+	byte StartandLoadScrns : 0x02A1474, 0x8;
+	short AllLevels : 0x013F858, 0x0;
+	int EndCutscene : "RenderD3D.dll", 0x000EEB4, 0x1DC;
 }
 
 startup
 {
-	settings.Add("option1", true, "Anathema");
-	settings.SetToolTip("option1", "Split at the end of Anathema");
-	settings.Add("option2", true, "St.Petersburg Stakeout");
-	settings.SetToolTip("option2", "Split at the end of St.Petersburg Stakeout");
-	settings.Add("option3", true, "Kirov Park Meeting");
-	settings.SetToolTip("option3", "Split at the end of Kirov Park Meeting");
-	settings.Add("option4", true, "Tubeway Torpedo");
-	settings.SetToolTip("option4", "Split at the end of Tubeway Torpedo");
-	settings.Add("option5", true, "Invitation to a Party");
-	settings.SetToolTip("option5", "Split at the end of Invitation to a Party");
-	settings.Add("option6", true, "Tracking Hayamoto");
-	settings.SetToolTip("option6", "Split at the end of Tracking Hayamoto");
-	settings.Add("option7", true, "Hidden Valley");
-	settings.SetToolTip("option7", "Split at the end of Hidden Valley");
-	settings.Add("option8", true, "At the Gates");
-	settings.SetToolTip("option8", "Split at the end of At the Gates");
-	settings.Add("option9", true, "Shogun Showdown");
-	settings.SetToolTip("option9", "Split at the end of Shogun Showdown");
-	settings.Add("option10", true, "Basement Killing");
-	settings.SetToolTip("option10", "Split at the end of Basement Killing");
-	settings.Add("option11", true, "The Graveyard Shift");
-	settings.SetToolTip("option11", "Split at the end of The Graveyard Shift");
-	settings.Add("option12", true, "The Jacuzzi Job");
-	settings.SetToolTip("option12", "Split at the end of The Jacuzzi Job");
-	settings.Add("option13", true, "Murder at the Bazaar");
-	settings.SetToolTip("option13", "Split at the end of Murder at the Bazaar");
-	settings.Add("option14", true, "The Motorcade Interception");
-	settings.SetToolTip("option14", "Split at the end of The Motorcade Interception");
-	settings.Add("option15", true, "Tunnel Rat");
-	settings.SetToolTip("option15", "Split at the end of Tunnel Rat");
-	settings.Add("option16", true, "Temple City Ambush");
-	settings.SetToolTip("option16", "Split at the end of Temple City Ambush");
-	settings.Add("option17", true, "The Death of Hannelore");
-	settings.SetToolTip("option17", "Split at the end of The Death of Hannelore");
-	settings.Add("option18", true, "Terminal Hospitality");
-	settings.SetToolTip("option18", "Split at the end of Terminal Hospitality");
-	settings.Add("option19", true, "St. Petersburg Revisited");
-	settings.SetToolTip("option19", "Split at the end of St. Petersburg Revisited");
+    settings.Add("am", true, "All Levels");
+    settings.SetToolTip("am", "Choose which levels to split after");
+	
+	settings.Add("option1", true, "Anathema", "am");
+	settings.Add("option2", true, "St.Petersburg Stakeout", "am");
+	settings.Add("option3", true, "Kirov Park Meeting", "am");
+	settings.Add("option4", true, "Tubeway Torpedo", "am");
+	settings.Add("option5", true, "Invitation to a Party", "am");
+	settings.Add("option6", true, "Tracking Hayamoto", "am");
+	settings.Add("option7", true, "Hidden Valley", "am");
+	settings.Add("option8", true, "At the Gates", "am");
+	settings.Add("option9", true, "Shogun Showdown", "am");
+	settings.Add("option10", true, "Basement Killing", "am");
+	settings.Add("option11", true, "The Graveyard Shift", "am");
+	settings.Add("option12", true, "The Jacuzzi Job", "am");
+	settings.Add("option13", true, "Murder at the Bazaar", "am");
+	settings.Add("option14", true, "The Motorcade Interception", "am");
+	settings.Add("option15", true, "Tunnel Rat", "am");
+	settings.Add("option16", true, "Temple City Ambush", "am");
+	settings.Add("option17", true, "The Death of Hannelore", "am");
+	settings.Add("option18", true, "Terminal Hospitality", "am");
+	settings.Add("option19", true, "St. Petersburg Revisited", "am");
+	
+	settings.Add("option20", true, "Redemption at Gontranno");
+	settings.SetToolTip("option20", "Final split");
+	settings.Add("option21", true, "Normal Start");
+	settings.SetToolTip("option21", "Start timer at the beginning of Anathema");
+	settings.Add("option22", false, "Any% Start");
+	settings.SetToolTip("option22", "Start timer at the beginning of The Gontranno Sanctuary");
+	settings.Add("option23", true, "Game Time");
+	settings.SetToolTip("option23", "Enables game time, to see it switch livesplit comparison to Game Time");
+	settings.Add("option24", true, "V1.02");
+	settings.SetToolTip("option24", "Choose correct game version, disable the incorrect one");
+	settings.Add("option25", false, "V1.0");
+	settings.SetToolTip("option25", "Choose correct game version, disable the incorrect one");
+}
+
+init
+{
+	if(settings["option24"])
+	{
+		version = "V1.02";
+	}
+	if(settings["option25"])
+	{
+		version = "V1.0";
+	}
 }
 
 start
 {
-	if (current.IsAllLevels == 791751985 && current.IsLoadScreen == 1)
+	if (settings["option21"] && current.StartandLoadScrns == 0 && old.StartandLoadScrns == 60)
+	{
+		return true;
+	}
+	if (settings["option22"] && current.StartandLoadScrns == 0 && old.StartandLoadScrns == 12)
 	{
 		return true;
 	}
@@ -57,84 +77,89 @@ start
 
 split
 {
-	if (settings["option1"] && current.IsAllLevels == 791751986 && old.IsAllLevels == 1852143214)
+	if (settings["option1"] && current.AllLevels == 212 && old.AllLevels == 457)
 	{
 		return true;
 	}
-	if (settings["option2"] && current.IsAllLevels == 791817522 && old.IsAllLevels == 1852143214)
+	if (settings["option2"] && current.AllLevels == 209 && old.AllLevels == 457)
 	{
 		return true;
 	}
-	if (settings["option3"] && current.IsAllLevels == 791883058 && old.IsAllLevels == 791817522)
+	if (settings["option3"] && current.AllLevels == 299 && old.AllLevels == 426)
 	{
 		return true;
 	}
-	if (settings["option4"] && current.IsAllLevels == 791948594 && old.IsAllLevels == 791883058)
+	if (settings["option4"] && current.AllLevels == 212 && old.AllLevels == 461)
 	{
 		return true;
 	}
-	if (settings["option5"] && current.IsAllLevels == 791751987 && old.IsAllLevels == 1852143214)
+	if (settings["option5"] && current.AllLevels == 132 && old.AllLevels == 457)
 	{
 		return true;
 	}
-	if (settings["option6"] && current.IsAllLevels == 1630678323 && old.IsAllLevels == 791751987)
+	if (settings["option6"] && current.AllLevels == 228 && old.AllLevels == 412)
 	{
 		return true;
 	}
-	if (settings["option7"] && current.IsAllLevels == 1647455539 && old.IsAllLevels == 1630678323)
+	if (settings["option7"] && current.AllLevels == 424 && old.AllLevels == 428)
 	{
 		return true;
 	}
-	if (settings["option8"] && current.IsAllLevels == 791883059 && old.IsAllLevels == 1647455539)
+	if (settings["option8"] && current.AllLevels == 160 && old.AllLevels == 424)
 	{
 		return true;
 	}
-	if (settings["option9"] && current.IsAllLevels == 791751988 && old.IsAllLevels == 1852143214)
+	if (settings["option9"] && current.AllLevels == 260 && old.AllLevels == 457)
 	{
 		return true;
 	}
-	if (settings["option10"] && current.IsAllLevels == 791817524 && old.IsAllLevels == 791751988)
+	if (settings["option10"] && current.AllLevels == 425 && old.AllLevels == 428)
 	{
 		return true;
 	}
-	if (settings["option11"] && current.IsAllLevels == 791883060 && old.IsAllLevels == 791817524)
+	if (settings["option11"] && current.AllLevels == 432 && old.AllLevels == 425)
 	{
 		return true;
 	}
-	if (settings["option12"] && current.IsAllLevels == 791751989 && old.IsAllLevels == 1852143214)
+	if (settings["option12"] && current.AllLevels == 146 && old.AllLevels == 457)
 	{
 		return true;
 	}
-	if (settings["option13"] && current.IsAllLevels == 791817525 && old.IsAllLevels == 791751989)
+	if (settings["option13"] && current.AllLevels == 107 && old.AllLevels == 409)
 	{
 		return true;
 	}
-	if (settings["option14"] && current.IsAllLevels == 791883061 && old.IsAllLevels == 791817525)
+	if (settings["option14"] && current.AllLevels == 146 && old.AllLevels == 434)
 	{
 		return true;
 	}
-	if (settings["option15"] && current.IsAllLevels == 791751990 && old.IsAllLevels == 1852143214)
+	if (settings["option15"] && current.AllLevels == 172 && old.AllLevels == 457)
 	{
 		return true;
 	}
-	if (settings["option16"] && current.IsAllLevels == 791817526 && old.IsAllLevels == 791751990)
+	if (settings["option16"] && current.AllLevels == 260 && old.AllLevels == 402)
 	{
 		return true;
 	}
-	if (settings["option17"] && current.IsAllLevels == 791883062 && old.IsAllLevels == 791817526)
+	if (settings["option17"] && current.AllLevels == 240 && old.AllLevels == 417)
 	{
 		return true;
 	}
-	if (settings["option18"] && current.IsAllLevels == 791751991 && old.IsAllLevels == 791817520)
+	if (settings["option18"] && current.AllLevels == 200 && old.AllLevels == 457)
 	{
 		return true;
 	}
-	if (settings["option19"] && current.IsAllLevels == 791751992 && old.IsAllLevels == 791751991)
+	if (settings["option19"] && current.AllLevels == 409 && old.AllLevels == 421)
 	{
 		return true;
 	}
-	if (current.IsUsedForEndCutscene == 1149861887 && old.IsUsedForEndCutscene == 0)
+	if (settings["option20"] && current.EndCutscene == 1063174144 && old.EndCutscene == 1036648448 && current.AllLevels == 409)
 	{
 		return true;
 	}
+}
+
+isLoading
+{
+	return (settings["option23"] && current.StartandLoadScrns == 0);
 }
