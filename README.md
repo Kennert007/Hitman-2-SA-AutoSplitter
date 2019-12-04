@@ -1,6 +1,6 @@
 # Hitman-2-SA-AutoSplitter
 
-Autosplitter for Steam version (1.02), doesn't seem to work for 1.0 and 1.01.
+Autosplitter for Steam version (1.02) and retail (1.0).
 
 
 # Setting up the autosplitter in Livesplit
@@ -16,11 +16,19 @@ Autosplitter for Steam version (1.02), doesn't seem to work for 1.0 and 1.01.
 ● Double click on Scriptable Auto Splitter and add the downloaded ASL file there
 
 
-# Settings
+# Scriptable Auto Splitter: Advanced Settings
 
-● Under Scriptable Auto Splitter you can also select exactly which maps you would like it to auto split (by default every level is checked)
+● You can select exactly which maps you would like it to auto split (by default every level is checked)
+
+● "Normal Start" option starts the timer when loading into Anathema (checked by default)
+
+● "Any% Start" option starts the timer when loading into The Gontranno Sanctuary (unchecked by default)
+
+● "Game Time" option removes loading times when switched to Game Time comparison in livesplit
+
+● "V1.02" and "V1.0", by default V1.02 is checked, if you have that version then you don't have to worry about this, but if you have V1.0 then you need to uncheck V1.02 and check V1.0 then save layout and restart livesplit (version number is bottom left in the game main menu)
 
 
 # Other
 
-If anyone needs to get in contact with me then: Kennert007#4167 (discord), Kennert007 (steam and twitter)
+V1.01 is currently not supported
