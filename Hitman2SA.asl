@@ -1,13 +1,15 @@
 state("hitman2", "V1.02")
 {
-	byte StartandLoadScrns : 0x02A907C, 0x8;
+	byte Load : 0x02AB1E8, 0x8;
+	byte Start : 0x02A907C, 0x8;
 	short AllLevels : 0x0141528, 0x0;
 	int EndCutscene : "RenderD3D.dll", 0x000F884, 0x1DC;
 }
 
 state("hitman2", "V1.0")
 {
-	byte StartandLoadScrns : 0x02A1474, 0x8;
+	byte Load : 0x02A35E0, 0x8;
+	byte Start : 0x02A1474, 0x8;
 	short AllLevels : 0x013F858, 0x0;
 	int EndCutscene : "RenderD3D.dll", 0x000EEB4, 0x1DC;
 }
@@ -36,14 +38,13 @@ startup
 	settings.Add("option17", true, "The Death of Hannelore", "am");
 	settings.Add("option18", true, "Terminal Hospitality", "am");
 	settings.Add("option19", true, "St. Petersburg Revisited", "am");
+	settings.Add("option20", true, "Redemption at Gontranno", "am");
 	
-	settings.Add("option20", true, "Redemption at Gontranno");
-	settings.SetToolTip("option20", "Final split");
 	settings.Add("option21", true, "Normal Start");
 	settings.SetToolTip("option21", "Start timer at the beginning of Anathema");
 	settings.Add("option22", false, "Any% Start");
 	settings.SetToolTip("option22", "Start timer at the beginning of The Gontranno Sanctuary");
-	settings.Add("option23", true, "Game Time");
+	settings.Add("option23", false, "Game Time");
 	settings.SetToolTip("option23", "Enables game time, to see it switch livesplit comparison to Game Time");
 	settings.Add("option24", true, "V1.02");
 	settings.SetToolTip("option24", "Choose correct game version, disable the incorrect one");
@@ -65,11 +66,11 @@ init
 
 start
 {
-	if (settings["option21"] && current.StartandLoadScrns == 0 && old.StartandLoadScrns == 60)
+	if (settings["option21"] && current.Start == 0 && old.Start == 60)
 	{
 		return true;
 	}
-	if (settings["option22"] && current.StartandLoadScrns == 0 && old.StartandLoadScrns == 12)
+	if (settings["option22"] && current.Start == 0 && old.Start == 12)
 	{
 		return true;
 	}
@@ -161,5 +162,5 @@ split
 
 isLoading
 {
-	return (settings["option23"] && current.StartandLoadScrns == 0);
+	return (settings["option23"] && current.Load == 0);
 }
