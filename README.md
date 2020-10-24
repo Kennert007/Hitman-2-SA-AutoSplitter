@@ -24,4 +24,4 @@ Autosplitter for Steam version (1.02) and retail (1.0)
 
 ● "Any% Start" option starts the timer when loading into The Gontranno Sanctuary (unchecked by default)
 
-● "Game Time" removes loading times when switched to Game Time comparison in livesplit (unchecked by default)
+● "Game Time" option removes loading times when switched to Game Time comparison in livesplit (unchecked by default)
