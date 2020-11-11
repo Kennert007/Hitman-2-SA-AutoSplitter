@@ -58,35 +58,39 @@ init
 
 start
 {
-	if (settings["option1"] && current.Start == 0 && old.Start == 60) return true;
-	if (settings["option2"] && current.Start == 0 && old.Start == 12) return true;
+	return(
+	(settings["option1"] && current.Start == 0 && old.Start == 60)||
+	(settings["option2"] && current.Start == 0 && old.Start == 12)
+	);
 }
 
 split
 {
-	if (settings["level1"] && current.AllLevels == 212 && old.AllLevels == 457) return true;
-	if (settings["level2"] && current.AllLevels == 209 && old.AllLevels == 457) return true;
-	if (settings["level3"] && current.AllLevels == 299 && old.AllLevels == 426) return true;
-	if (settings["level4"] && current.AllLevels == 212 && old.AllLevels == 461) return true;
-	if (settings["level5"] && current.AllLevels == 132 && old.AllLevels == 457) return true;
-	if (settings["level6"] && current.AllLevels == 228 && old.AllLevels == 412) return true;
-	if (settings["level7"] && current.AllLevels == 424 && old.AllLevels == 428) return true;
-	if (settings["level8"] && current.AllLevels == 160 && old.AllLevels == 424) return true;
-	if (settings["level9"] && current.AllLevels == 260 && old.AllLevels == 457) return true;
-	if (settings["level10"] && current.AllLevels == 425 && old.AllLevels == 428) return true;
-	if (settings["level11"] && current.AllLevels == 432 && old.AllLevels == 425) return true;
-	if (settings["level12"] && current.AllLevels == 146 && old.AllLevels == 457) return true;
-	if (settings["level13"] && current.AllLevels == 107 && old.AllLevels == 409) return true;
-	if (settings["level14"] && current.AllLevels == 146 && old.AllLevels == 434) return true;
-	if (settings["level15"] && current.AllLevels == 172 && old.AllLevels == 457) return true;
-	if (settings["level16"] && current.AllLevels == 260 && old.AllLevels == 402) return true;
-	if (settings["level17"] && current.AllLevels == 240 && old.AllLevels == 417) return true;
-	if (settings["level18"] && current.AllLevels == 200 && old.AllLevels == 457) return true;
-	if (settings["level19"] && current.AllLevels == 409 && old.AllLevels == 421) return true;
-	if (settings["level20"] && current.EndCutscene == 1063174144 && old.EndCutscene == 1036648448 && current.AllLevels == 409) return true;
+	return(
+	(settings["level1"] && current.AllLevels == 212 && old.AllLevels == 457)||
+	(settings["level2"] && current.AllLevels == 209 && old.AllLevels == 457)||
+	(settings["level3"] && current.AllLevels == 299 && old.AllLevels == 426)||
+	(settings["level4"] && current.AllLevels == 212 && old.AllLevels == 461)||
+	(settings["level5"] && current.AllLevels == 132 && old.AllLevels == 457)||
+	(settings["level6"] && current.AllLevels == 228 && old.AllLevels == 412)||
+	(settings["level7"] && current.AllLevels == 424 && old.AllLevels == 428)||
+	(settings["level8"] && current.AllLevels == 160 && old.AllLevels == 424)||
+	(settings["level9"] && current.AllLevels == 260 && old.AllLevels == 457)||
+	(settings["level10"] && current.AllLevels == 425 && old.AllLevels == 428)||
+	(settings["level11"] && current.AllLevels == 432 && old.AllLevels == 425)||
+	(settings["level12"] && current.AllLevels == 146 && old.AllLevels == 457)||
+	(settings["level13"] && current.AllLevels == 107 && old.AllLevels == 409)||
+	(settings["level14"] && current.AllLevels == 146 && old.AllLevels == 434)||
+	(settings["level15"] && current.AllLevels == 172 && old.AllLevels == 457)||
+	(settings["level16"] && current.AllLevels == 260 && old.AllLevels == 402)||
+	(settings["level17"] && current.AllLevels == 240 && old.AllLevels == 417)||
+	(settings["level18"] && current.AllLevels == 200 && old.AllLevels == 457)||
+	(settings["level19"] && current.AllLevels == 409 && old.AllLevels == 421)||
+	(settings["level20"] && current.EndCutscene == 1063174144 && old.EndCutscene == 1036648448 && current.AllLevels == 409)
+	);
 }
 
 isLoading
 {
-	return (settings["option3"] && current.Load == 0);
+	return settings["option3"] && current.Load == 0;
 }
