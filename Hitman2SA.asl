@@ -6,6 +6,14 @@ state("hitman2", "v1.02")
 	int EndCutscene : "RenderD3D.dll", 0x000F884, 0x1DC;
 }
 
+state("hitman2", "v1.01")
+{
+	byte Load : 0x02AD1F0, 0x8;
+	byte Start : 0x02AB084, 0x8;
+	short AllLevels : 0x0142E68, 0x0;
+	int EndCutscene : "RenderD3D.dll", 0x000F8B4, 0x1DC;
+}
+
 state("hitman2", "v1.0")
 {
 	byte Load : 0x02A35E0, 0x8;
@@ -52,7 +60,9 @@ init
 {
 	if (modules.First().ModuleMemorySize == 0x02EC000)
 	version = "v1.02";
-	else if (modules.First().ModuleMemorySize == 0x0367000)
+	if (modules.First().ModuleMemorySize == 0x02EF000)
+	version = "v1.01";
+	if (modules.First().ModuleMemorySize == 0x0367000)
 	version = "v1.0";
 }
 
