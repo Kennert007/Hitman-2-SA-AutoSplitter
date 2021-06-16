@@ -3,7 +3,7 @@ state("hitman2", "v1.02")
 	byte Load : 0x02AB1E8, 0x8;
 	byte Start : 0x02A907C, 0x8;
 	short AllLevels : 0x0141528, 0x0;
-	int EndCutscene : "RenderD3D.dll", 0x000F884, 0x1DC;
+	int EndCutscene : "RenderD3D.dll", 0x000C25C, 0xF2C;
 }
 
 state("hitman2", "v1.01")
@@ -11,7 +11,7 @@ state("hitman2", "v1.01")
 	byte Load : 0x02AD1F0, 0x8;
 	byte Start : 0x02AB084, 0x8;
 	short AllLevels : 0x0142E68, 0x0;
-	int EndCutscene : "RenderD3D.dll", 0x000F8B4, 0x1DC;
+	int EndCutscene : "RenderD3D.dll", 0x000C34C, 0xF2C;
 }
 
 state("hitman2", "v1.0")
@@ -19,7 +19,7 @@ state("hitman2", "v1.0")
 	byte Load : 0x02A35E0, 0x8;
 	byte Start : 0x02A1474, 0x8;
 	short AllLevels : 0x013F858, 0x0;
-	int EndCutscene : "RenderD3D.dll", 0x000EEB4, 0x1DC;
+	int EndCutscene : "RenderD3D.dll", 0x000B94C, 0xF2C;
 }
 
 startup
@@ -96,7 +96,7 @@ split
 	(settings["level17"] && current.AllLevels == 240 && old.AllLevels == 417)||
 	(settings["level18"] && current.AllLevels == 200 && old.AllLevels == 457)||
 	(settings["level19"] && current.AllLevels == 409 && old.AllLevels == 421)||
-	(settings["level20"] && current.EndCutscene == 1063174144 && old.EndCutscene == 1036648448 && current.AllLevels == 409)
+	(settings["level20"] && current.EndCutscene == 1117714243 && old.EndCutscene != current.EndCutscene && current.AllLevels == 409)
 	);
 }
 
