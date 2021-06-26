@@ -3,7 +3,18 @@
 Autosplitter for Steam version (1.02), Steam downgraded (1.01) and retail (1.0)
 
 
-# Setting up the autosplitter in Livesplit
+# Setting up the autosplitter in Livesplit (New method)
+
+● Open Livesplit
+
+● Edit Splits...
+
+● Add the Game Name
+
+● Activate the splitter
+
+
+# Setting up the autosplitter in Livesplit (Old method)
 
 ● Download the ASL file
 
